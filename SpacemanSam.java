@@ -19,9 +19,9 @@ public class SpacemanSam
   //Number of Jump Boosts
   static int jumpBoost = 2;
   //Number of Shink Powers
-  static int small = 2;
+  static int small = 20;
   //Number of Speed Boosts
-  static int speedBoost = 2;
+  static int speedBoost = 20;
   //Time spent small
   static int smallTime = 250;
   //Test if Jumping
@@ -37,6 +37,10 @@ public class SpacemanSam
   
   public void move()
   {
+    if(yv > 1)
+    {
+      isJumping = true;
+    }
     //If jumping then accelerate downward
     if(isJumping)
     {
@@ -73,6 +77,11 @@ public class SpacemanSam
       x = 860;
       xv = 0;
     }
+    if(y < 0)
+    {
+      yv = 0;
+      y = 0;
+    }
     xv += xa;
     y += yv;
     yv += ya;
@@ -100,6 +109,52 @@ public class SpacemanSam
     else
     {
       g2d.fillRect(x, y+25, 25, 25);
+    }
+  }
+  
+  public void collision(Platform m)
+  {
+    if(((y+48 > m.getY() && y < m.getY()+20) && (x+25 > m.getX() && x+25 < m.getX()+25)) && xv > 0 && !isSmall)
+    {
+      xv = 0;
+      x = m.getX()-25;
+    }
+    if(((y+48 > m.getY() && y < m.getY()+20) && (x < m.getX()+30 && x > m.getX()+5)) && xv < 0 && !isSmall)
+    {
+      xv = 0;
+      x = m.getX()+30;
+    }
+    if(((x+25 > m.getX() && x < m.getX()+30) && (y+50 > m.getY()-10 && y+50 < m.getY()+25)) && yv > 0 && !isSmall)
+    {
+      yv = 0;
+      y = m.getY()-50;
+      isJumping = false;
+    }
+    if((x+25 > m.getX()+2 && x < m.getX()+28) && (y < m.getY()+30 && y > m.getY()+5) && !isSmall)
+    {
+      yv = 0;
+      y = m.getY()+31;
+    }
+    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x+25 > m.getX() && x+25 < m.getX()+25)) && xv > 0 && isSmall)
+    {
+      xv = 0;
+      x = m.getX()-25;
+    }
+    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x < m.getX()+30 && x > m.getX()+5)) && xv < 0 && isSmall)
+    {
+      xv = 0;
+      x = m.getX()+30;
+    }
+    if(((x+25 > m.getX() && x < m.getX()+30) && (y+50 > m.getY()-10 && y+50 < m.getY()+25)) && yv > 0 && isSmall)
+    {
+      yv = 0;
+      y = m.getY()-50;
+      isJumping = false;
+    }
+    if((x+25 > m.getX()+2 && x < m.getX()+28) && (y+25 < m.getY()+30 && y+25 > m.getY()+5) && isSmall)
+    {
+      yv = 0;
+      y = m.getY()+5;
     }
   }
   

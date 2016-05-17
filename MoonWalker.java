@@ -7,6 +7,7 @@ public class MoonWalker extends JPanel
 {
   public MoonWalker m;
   SpacemanSam sam = new SpacemanSam(this);
+  Platform[] p = new Platform[5];
   
   public MoonWalker()
   {
@@ -20,6 +21,11 @@ public class MoonWalker extends JPanel
     };
     addKeyListener(listener);
     setFocusable(true);
+    p[0] = new Platform(this, 220, 765);
+    p[1] = new Platform(this, 250, 735);
+    p[2] = new Platform(this, 300, 685);
+    p[3] = new Platform(this, 500, 485);
+    p[4] = new Platform(this, 500, 800);
   }
   
   public static void main(String[] args) throws InterruptedException
@@ -45,12 +51,19 @@ public class MoonWalker extends JPanel
     g2d.setColor(new Color(0, 0, 100));
     g2d.fillRect(0, 0, 900, 865);
     g2d.setColor(new Color(0, 255, 255));
-    g2d.fillRect(220, 765, 180, 100);
     sam.paint(g2d);
+    for(int i = 0; i < p.length; i++)
+    {
+      p[i].paint(g2d);
+    }
   }
   
   public void move()
   {
+    for(int i = 0; i < p.length; i++)
+    {
+      sam.collision(p[i]);
+    }
     sam.move();
   }
 }
