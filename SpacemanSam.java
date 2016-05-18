@@ -28,7 +28,7 @@ public class SpacemanSam
   static boolean isJumping = false;
   //Test if Small
   static boolean isSmall = false;
-  MoonWalker m;
+  static MoonWalker m;
   
   public SpacemanSam(MoonWalker m)
   {
@@ -56,6 +56,10 @@ public class SpacemanSam
     else if(xv < -2)
     {
       xv += 2;
+    }
+    if(yv > 15)
+    {
+      yv -= 2;
     }
     //Stop SMS from falling through the floor
     if(y >= 815 && yv > 0)
@@ -114,12 +118,12 @@ public class SpacemanSam
   
   public void collision(Platform m)
   {
-    if(((y+48 > m.getY() && y < m.getY()+20) && (x+25 > m.getX() && x+25 < m.getX()+25)) && xv > 0 && !isSmall)
+    if(((y+48 > m.getY() && y < m.getY()+20) && (x+25 > m.getX()-5 && x+25 < m.getX()+25)) && xv > 0 && !isSmall)
     {
       xv = 0;
       x = m.getX()-25;
     }
-    if(((y+48 > m.getY() && y < m.getY()+20) && (x < m.getX()+30 && x > m.getX()+5)) && xv < 0 && !isSmall)
+    if(((y+48 > m.getY() && y < m.getY()+20) && (x < m.getX()+35 && x > m.getX()+5)) && xv < 0 && !isSmall)
     {
       xv = 0;
       x = m.getX()+30;
@@ -135,12 +139,12 @@ public class SpacemanSam
       yv = 0;
       y = m.getY()+31;
     }
-    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x+25 > m.getX() && x+25 < m.getX()+25)) && xv > 0 && isSmall)
+    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x+25 > m.getX()+5 && x+25 < m.getX()+25)) && xv > 0 && isSmall)
     {
       xv = 0;
       x = m.getX()-25;
     }
-    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x < m.getX()+30 && x > m.getX()+5)) && xv < 0 && isSmall)
+    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x < m.getX()+35 && x > m.getX()+5)) && xv < 0 && isSmall)
     {
       xv = 0;
       x = m.getX()+30;
@@ -155,6 +159,18 @@ public class SpacemanSam
     {
       yv = 0;
       y = m.getY()+5;
+    }
+  }
+  
+  public void collision(Coin c)
+  {
+    if((x+25 > c.getX() && x < c.getX()+30) && (y+50 > c.getY() && y < c.getY()+40) && !isSmall)
+    {
+      c.collect();
+    }
+    else if((x+25 > c.getX() && x < c.getX()+30) && (y+50 > c.getY() && y+25 < c.getY()+40) && isSmall)
+    {
+      c.collect();
     }
   }
   
@@ -220,6 +236,7 @@ public class SpacemanSam
       smallTime = 250;
       isJumping = false;
       isSmall = false;
+      m.unCollect();
     }
     //Jump Boost
     if (e.getKeyCode() == KeyEvent.VK_W)
