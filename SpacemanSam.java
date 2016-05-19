@@ -28,6 +28,7 @@ public class SpacemanSam
   static boolean isJumping = false;
   //Test if Small
   static boolean isSmall = false;
+  static boolean pause = false;
   static MoonWalker m;
   
   public SpacemanSam(MoonWalker m)
@@ -37,68 +38,71 @@ public class SpacemanSam
   
   public void move()
   {
-    if(yv > 1)
+    if(!pause)
     {
-      isJumping = true;
-    }
-    //If jumping then accelerate downward
-    if(isJumping)
-    {
-    ya = 1;
-    }
-    //Move Horizontally
-    x += xv;
-    //Stop SMS from moving to quickly
-    if(xv > 2)
-    {
-      xv -= 2;
-    }
-    else if(xv < -2)
-    {
-      xv += 2;
-    }
-    if(yv > 15)
-    {
-      yv -= 2;
-    }
-    //Stop SMS from falling through the floor
-    if(y >= 815 && yv > 0)
-    {
-      ya = 0;
-      yv = 0;
-      y = 815;
-      isJumping = false;
-    }
-    //Stop SMS from walking off the left side of the screen
-    if(x <= 0 && xv < 0)
-    {
-      x = 0;
-      xv = 0;
-    }
-    //Stop SMS from walking off the right side of the screen
-    if(x >= 860 && xv > 0)
-    {
-      x = 860;
-      xv = 0;
-    }
-    if((y < 0 && !isSmall) || (y < -25 && isSmall))
-    {
-      yv = 0;
-      y = 0;
-    }
-    xv += xa;
-    y += yv;
-    yv += ya;
-    //CountDown the smallTime
-    if(isSmall)
-    {
-      smallTime--;
-    }
-    //Unshrink SMS when timer runs out
-    if(smallTime == 0)
-    {
-      isSmall = false;
-      smallTime = 250;
+      if(yv > 1)
+      {
+        isJumping = true;
+      }
+      //If jumping then accelerate downward
+      if(isJumping)
+      {
+        ya = 1;
+      }
+      //Move Horizontally
+      x += xv;
+      //Stop SMS from moving too quickly
+      if(xv > 2)
+      {
+        xv -= 2;
+      }
+      else if(xv < -2)
+      {
+        xv += 2;
+      }
+      if(yv > 15)
+      {
+        yv -= 2;
+      }
+      //Stop SMS from falling through the floor
+      if(y >= 815 && yv > 0)
+      {
+        ya = 0;
+        yv = 0;
+        y = 815;
+        isJumping = false;
+      }
+      //Stop SMS from walking off the left side of the screen
+      if(x <= 0 && xv < 0)
+      {
+        x = 0;
+        xv = 0;
+      }
+      //Stop SMS from walking off the right side of the screen
+      if(x >= 860 && xv > 0)
+      {
+        x = 860;
+        xv = 0;
+      }
+      if((y < 0 && !isSmall) || (y < -25 && isSmall))
+      {
+        yv = 0;
+        y = 0;
+      }
+      xv += xa;
+      y += yv;
+      yv += ya;
+      //CountDown the smallTime
+      if(isSmall)
+      {
+        smallTime--;
+      }
+      //Unshrink SMS when timer runs out
+      if(smallTime == 0)
+      {
+        isSmall = false;
+        smallTime = 250;
+      }
     }
   }
   
@@ -176,8 +180,12 @@ public class SpacemanSam
   
   public static void keyReleased(KeyEvent e) 
   {
+    if (e.getKeyCode() == KeyEvent.VK_SPACE)
+    {
+      pause = !pause;
+    }
     //Set momentum to zero when key is released
-    if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+    if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT && !pause)
     {
       xv = 0;
       xa = 0;
@@ -187,7 +195,7 @@ public class SpacemanSam
   public static void keyPressed(KeyEvent e)
   {
     //Jump
-    if (e.getKeyCode() == KeyEvent.VK_UP)
+    if (e.getKeyCode() == KeyEvent.VK_UP && !pause)
     {
       if(!isJumping)
       {
@@ -205,7 +213,7 @@ public class SpacemanSam
       }
     }
     //SpeedBoost
-    if (e.getKeyCode() == KeyEvent.VK_Q)
+    if (e.getKeyCode() == KeyEvent.VK_Q && !pause)
     {
       if(speedBoost > 0 && xv != 0)
       {
@@ -222,7 +230,7 @@ public class SpacemanSam
       }
     }
     //Reset level
-    if (e.getKeyCode() == KeyEvent.VK_R)
+    if (e.getKeyCode() == KeyEvent.VK_R && !pause)
     {
       x = 50;
       y = 815;
@@ -239,7 +247,7 @@ public class SpacemanSam
       m.unCollect();
     }
     //Jump Boost
-    if (e.getKeyCode() == KeyEvent.VK_W)
+    if (e.getKeyCode() == KeyEvent.VK_W && !pause)
     {
       if(jumpBoost > 0)
       {
@@ -257,7 +265,7 @@ public class SpacemanSam
       }
     }
     //Shrink
-    if (e.getKeyCode() == KeyEvent.VK_E)
+    if (e.getKeyCode() == KeyEvent.VK_E && !pause)
     {
       if(small > 0 && !isSmall)
       {
@@ -266,12 +274,12 @@ public class SpacemanSam
       }
     }
     //Walk Left
-    if (e.getKeyCode() == KeyEvent.VK_LEFT)
+    if (e.getKeyCode() == KeyEvent.VK_LEFT && !pause)
     {
       xa = -1;
     }
     //Walk Right
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+    if (e.getKeyCode() == KeyEvent.VK_RIGHT && !pause)
     {
       xa = 1;
     }
