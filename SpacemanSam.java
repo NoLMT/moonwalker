@@ -81,7 +81,7 @@ public class SpacemanSam
       x = 860;
       xv = 0;
     }
-    if(y < 0)
+    if((y < 0 && !isSmall) || (y < -25 && isSmall))
     {
       yv = 0;
       y = 0;
@@ -139,7 +139,7 @@ public class SpacemanSam
       yv = 0;
       y = m.getY()+31;
     }
-    if(((y+48 > m.getY() && y+25 < m.getY()+28) && (x+25 > m.getX()+5 && x+25 < m.getX()+25)) && xv > 0 && isSmall)
+    if(((y+48 > m.getY() && y+25 < m.getY()+20) && (x+25 > m.getX()-5 && x+25 < m.getX()+25)) && xv > 0 && isSmall)
     {
       xv = 0;
       x = m.getX()-25;

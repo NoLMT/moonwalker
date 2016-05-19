@@ -7,8 +7,10 @@ public class MoonWalker extends JPanel
 {
   public MoonWalker m;
   SpacemanSam sam = new SpacemanSam(this);
-  Platform[] p = new Platform[14];
-  Coin c1 = new Coin(this, 800, 775);
+  Platform[] p = new Platform[133];
+  Coin c1 = new Coin(this, 770, 800, 0);
+  Coin c2 = new Coin(this, 800, 800, 1);
+  Coin c3 = new Coin(this, 830, 800, 2);
   
   public MoonWalker()
   {
@@ -36,6 +38,12 @@ public class MoonWalker extends JPanel
     p[11] = new Platform(this, 500, 740);
     p[12] = new Platform(this, 500, 710);
     p[13] = new Platform(this, 500, 680);
+    p[14] = new Platform(this, 500, 830);
+    p[15] = new Platform(this, 500, 860);
+    for(int i = 16; i < p.length; i++)
+    {
+      p[i] = new Platform(this, i*2, i*2);
+    }
   }
   
   public static void main(String[] args) throws InterruptedException
@@ -58,6 +66,8 @@ public class MoonWalker extends JPanel
   public void unCollect()
   {
     c1.unCollect();
+    c2.unCollect();
+    c3.unCollect();
   }
   
   public void paint(Graphics g) 
@@ -73,6 +83,8 @@ public class MoonWalker extends JPanel
       p[i].paint(g2d);
     }
     c1.paint(g2d);
+    c2.paint(g2d);
+    c3.paint(g2d);
   }
   
   public void move()
@@ -82,6 +94,8 @@ public class MoonWalker extends JPanel
       sam.collision(p[i]);
     }
     sam.collision(c1);
+    sam.collision(c2);
+    sam.collision(c3);
     sam.move();
   }
 }
