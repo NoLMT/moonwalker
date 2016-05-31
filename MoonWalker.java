@@ -148,7 +148,6 @@ public class MoonWalker extends JPanel
   { 
     super.paint(g);
     Graphics2D g2d = (Graphics2D) g;
-    sam.paint(g2d);
     g2d.setColor(new Color(0, 0, 100));
     g2d.fillRect(0, 0, 900, 865);
     g2d.setColor(new Color(0, 255, 255));
@@ -164,6 +163,7 @@ public class MoonWalker extends JPanel
     c3.paint(g2d);
     b.paint(g2d);
     d.paint(g2d);
+    sam.paint(g2d);
   }
   
   public void move()
