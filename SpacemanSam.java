@@ -36,6 +36,11 @@ public class SpacemanSam
     this.m = m;
   }
   
+  public boolean getPaused()
+  {
+    return pause;
+  }
+  
   public void move()
   {
     //Don't run if paused
@@ -128,7 +133,7 @@ public class SpacemanSam
     //paint the word paused if paused
     if(pause)
     {
-      g2d.setColor(new Color(0, 255, 255));
+      g2d.setColor(new Color(255, 0, 255));
       g2d.setFont(new Font("Aharoni", Font.BOLD, 100));
       g2d.drawString("PAUSED", 300, 450);
     }
