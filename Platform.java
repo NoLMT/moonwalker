@@ -10,12 +10,21 @@ public class Platform
   private int x; 
   private int y; 
   MoonWalker m;
+  private BufferedImage img = null;
   
   public Platform(MoonWalker m, int x, int y) 
   { 
     this.m = m;
     this.x = x; 
     this.y = y; 
+    
+   try
+    {
+      img = ImageIO.read(new File("Platform.png"));
+    } catch (IOException e)
+    {
+      System.out.println("No Image");
+    }
   } 
   
   public int getX()
@@ -30,7 +39,8 @@ public class Platform
   
   public void paint(Graphics g2d) 
   { 
-    g2d.setColor(new Color(0, 255, 255)); 
-    g2d.fillRect(x, y, 30, 30); 
+    //g2d.setColor(new Color(0, 255, 255)); 
+    //g2d.fillRect(x, y, 30, 30); 
+    g2d.drawImage(img, x, y, null);
   } 
 } 
