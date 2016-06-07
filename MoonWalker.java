@@ -52,17 +52,21 @@ public class MoonWalker extends JPanel
     {
       case 0:
         s = 0;
+        for(int i = 0; i < p.length; i++)
+        {
+          p[i] = new Platform(this, 1000, 1000);
+        }
         c1 = new Coin(this, 450, 470, 0);
         c2 = new Coin(this, 450, 815, 1);
         c3 = new Coin(this, 150, 360, 2); 
-        b[0] = new Button(this, 1000, 750, 1);
+        b[0] = new Button(this, 1000, 550, 2);
         b[1] = new Button(this, 1000, 550, 3);
         ed = new ExitDoor(this, 50, 150);
         sam.setJump(0);
         sam.setSpeed(0);
         sam.setShrink(0);
         //true is vertical, false is horizontal
-        d[0] = new Door(this, 1000, 200, 1, true);
+        d[0] = new Door(this, 1000, 200, 2, false);
         pd[0] = new PlatformDoor(this, 1000, 300, 3, false);
         for(int i = 780; i <= 840; i += 30)
         {
@@ -134,6 +138,130 @@ public class MoonWalker extends JPanel
         }
         sam.reset();
         break;
+      case 3:
+        s = 0;
+        for(int i = 0; i < p.length; i++)
+        {
+          p[i] = new Platform(this, 1000, 1000);
+        }
+        c1 = new Coin(this, 345, 520, 0);
+        c2 = new Coin(this, 450, 815, 1);
+        c3 = new Coin(this, 150, 360, 2); 
+        b[0] = new Button(this, 200, 832, 2);
+        b[1] = new Button(this, 1000, 550, 3);
+        ed = new ExitDoor(this, 800, 300);
+        sam.setJump(0);
+        sam.setSpeed(1);
+        sam.setShrink(0);
+        //true is vertical, false is horizontal
+        d[0] = new Door(this, 300, 570, 0, false);
+        pd[0] = new PlatformDoor(this, 180, 720, 2, false);
+        for(int i = 720; i <= 870; i += 30)
+        {
+          for (int l = 300; l <= 420; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 780; i <= 780; i += 30)
+        {
+          for (int l = 0; l <= 30; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 210; i <= 720; i += 30)
+        {
+          for (int l = 150; l <= 150; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 630; i <= 630; i += 30)
+        {
+          for (int l = 0; l <= 30; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 720; i <= 720; i += 30)
+        {
+          for (int l = 120; l <= 120; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 450; i <= 450; i += 30)
+        {
+          for (int l = 0; l <= 30; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 510; i <= 510; i += 30)
+        {
+          for (int l = 120; l <= 120; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 330; i <= 330; i += 30)
+        {
+          for (int l = 120; l <= 120; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 60; i <= 570; i += 30)
+        {
+          for (int l = 270; l <= 270; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 420; i <= 480; i += 30)
+        {
+          for (int l = 300; l <= 390; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 750; i <= 870; i += 30)
+        {
+          for (int l = 450; l <= 510; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 420; i <= 570; i += 30)
+        {
+          for (int l = 420; l <= 450; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        for(int i = 420; i <= 540; i += 30)
+        {
+          for (int l = 480; l <= 480; l += 30)
+          {
+            p[s] = new Platform(this, l, i);
+            s++;
+          }
+        }
+        sam.reset();
+        break;
       default:
         s = 0;
         c1 = new Coin(this, 1000, 470, 0);
@@ -141,7 +269,7 @@ public class MoonWalker extends JPanel
         c3 = new Coin(this, 1000, 360, 2); 
         b[0] = new Button(this, 1000, 550, 2);
         b[1] = new Button(this, 1000, 550, 3);
-        ed = new ExitDoor(this, 1000, 150);
+        ed = new ExitDoor(this, 800, 810);
         sam.setJump(2);
         sam.setSpeed(2);
         sam.setShrink(2);
@@ -220,7 +348,7 @@ public class MoonWalker extends JPanel
     time = "" + (endTime/1000);
     g2d.setFont(new Font("Aharoni", Font.BOLD, 32));
     g2d.drawString(time, 445, 40);
-    if(level > 0)
+    if(level > 4)
     {
       g2d.drawString("YOU WIN", 400, 445);
     }

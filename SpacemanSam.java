@@ -222,10 +222,10 @@ public class SpacemanSam
         x = 860;
         xv = 0;
       }
-      if((y < 0 && !isSmall) || (y < -25 && isSmall))
+      if((y < 60 && !isSmall) || (y < 35 && isSmall))
       {
         yv = 0;
-        y = 0;
+        y = 60;
       }
       xv += xa;
       y += yv;
@@ -597,6 +597,11 @@ public class SpacemanSam
     if (e.getKeyCode() == KeyEvent.VK_SPACE)
     {
       pause = !pause;
+    }
+    if (e.getKeyCode() == KeyEvent.VK_L)
+    {
+      m.levelUp();
+      m.rebuild();
     }
     //Set momentum to zero when key is released
     if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT && !pause)

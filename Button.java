@@ -10,7 +10,7 @@ public class Button
   private int y;
   private int color;
   private boolean pressed = false;
-  private int pressTime = 250;
+  private int pressTime = 500;
   private BufferedImage ispressed = null;
   private BufferedImage unpressed = null;
   
@@ -133,7 +133,7 @@ public class Button
     if(pressTime == 0)
     {
       pressed = false;
-      pressTime = 250;
+      pressTime = 500;
     }
   }
   

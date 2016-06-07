@@ -19,7 +19,6 @@ public class Coin
     this.x = x;
     this.y = y;
     this.coinNum = coinNum;
-    
      try
      {
        img = ImageIO.read(new File("Coin.png"));
