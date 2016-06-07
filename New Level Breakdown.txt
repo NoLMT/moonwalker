@@ -1,0 +1,7 @@
+NEW LEVEL BREAKDOWN:
+
+Level 1: No Powerups
+Level 2: 1 Jump Boost only
+Level 3: 1 Shrink Boost only
+Level 4: 1 Speed Boost only
+Level 5: 1 of each Powerup
