@@ -2,20 +2,36 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage; 
+import javax.imageio.*; 
+import java.io.*; 
 
 public class MoonWalker extends JPanel
 {
   public MoonWalker m;
   SpacemanSam sam = new SpacemanSam(this);
-  Platform[] p = new Platform[145];
-  private int t = 0;
-  private int o = 0;
-  private int u = 0;
-  private int f = 0;
-  private int z = 0;
-  public Coin c = new Coin (this, 0, 0, 3);
+  Platform[] p = new Platform[102];
+  private int s = 0;
+  Coin c1 = new Coin(this, 630, 100, 0); 
+  Coin c2 = new Coin(this, 410, 640, 1); // // // //
+  Coin c3 = new Coin(this, 90, 120, 2); 
+  Button[] b = new Button[2];
+  Door[] d = new Door[1];
+  PlatformDoor[] pd = new PlatformDoor[1];
+  static String time;
+  static long startTime = System.currentTimeMillis();
+  static long endTime;
+  private BufferedImage bg = null;
+  
   public MoonWalker()
   {
+    try
+    {
+      bg = ImageIO.read(new File("Background.png"));
+    } catch (IOException e)
+    {
+      System.out.println("No Image");
+    }
     KeyListener listener = new KeyListener()
     {
       public void keyTyped(KeyEvent e){}
@@ -26,86 +42,276 @@ public class MoonWalker extends JPanel
     };
     addKeyListener(listener);
     setFocusable(true);
-    for(int n = 780; n <= 840; n += 30)
+    
+    b[0] = new Button(this, 800, 690, 2);
+    b[1] = new Button(this, 900, 550, 3);
+    d[0] = new Door(this, 360, 600, 2, false);
+    pd[0] = new PlatformDoor(this, 510, 330, 3, false);
+    
+    for(int i = 720; i <= 840; i += 30)
     {
-      for (int m = 210; m <= 360; m += 30)
+      for (int l = 720; l <= 870; l += 30)
       {
-        p[t] = new Platform(this, m, n);
-        t++;
+        p[s] = new Platform(this, l, i);
+        s++;
       }
     }
-    o = 18;
-    for(int r = 690; r <= 870; r += 30)
+    s = 30 ;
+    for(int i = 600; i <= 660; i += 30)
     {
-      p[o] = new Platform(this, 450, r);
-      o++;
-    }
-    u = 25;
-    for(int b = 690; b <= 870; b += 30)
-    {
-      for (int a = 540; a <= 870; a += 30)
+      for (int l = 480; l <= 660; l += 30)
       {
-        p[u] = new Platform(this, a, b);
-        u++;
+        p[s] = new Platform(this, l, i);
+        s++;
       }
     }
-    f = 109;
-    for(int g = 600; g <= 690; g += 30)
+    s = 51;
+    for(int i = 600; i <= 660; i += 30)
     {
-      for (int h = 720; h <= 870; h += 30)
+      for (int l = 240; l <= 330; l += 30)
       {
-        p[f] = new Platform(this, h, g);
-        f++;
+        p[s] = new Platform(this, l, i);
+        s++;
       }
     }
-    z = 133 ;
-    for(int x = 510; x <= 540; x += 30)
+    s = 63;
+    for(int i = 660; i <= 660; i += 30)
     {
-      for (int y = 510; y <= 660; y += 30)
+      for (int l = 90 ; l <= 150; l += 30)
       {
-        p[z] = new Platform(this, y, x);
-        z++;
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+    s = 66;
+    for(int i = 780; i <= 780; i += 30)
+    {
+      for (int l = 30 ; l <= 90; l += 30)
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+    s = 69;
+     for(int i = 480; i <= 480; i += 30)
+    {
+      for (int l = 120 ; l <= 180; l += 30)
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+      s = 72;
+     for(int i = 360; i <= 360; i += 30)
+    {
+      for (int l = 0 ; l <= 90; l += 30)
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+      s = 76;
+     for(int i = 390; i <= 390; i += 30)
+    {
+      for (int l = 0 ; l <= 60; l += 30)
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+     s = 79;
+     for(int i = 180; i <= 180; i += 30)
+    {
+      for (int l = 150 ; l <= 210; l += 30)
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+      s = 82;
+     for(int i = 390; i <= 420; i += 30)//2
+    {
+      for (int l = 270 ; l <= 330; l += 30)//3 -------------->
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+      s = 88;
+     for(int i = 330; i <= 330; i += 30)//1
+    {
+      for (int l = 420 ; l <= 450; l += 30)//2 -------------->
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+      s = 90;
+     for(int i = 240; i <= 330; i += 30)//4
+    {
+      for (int l = 480 ; l <= 480; l += 30)//1 -------------->
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+     s = 94;
+     for(int i = 240; i <= 240; i += 30)//1
+    {
+      for (int l = 480 ; l <= 570; l += 30)//4 -------------->
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
+      }
+    }
+     s = 98;
+     for(int i = 420; i <= 420; i += 30)//1
+    {
+      for (int l = 720 ; l <= 810; l += 30)//4 -------------->
+      {
+        p[s] = new Platform(this, l, i);
+        s++;
       }
     }
   }
-  public void unCollect()
-  {
-    c.unCollect();
-  }
-  
   public static void main(String[] args) throws InterruptedException
   {
     JFrame frame = new JFrame("Moon Walker");
     MoonWalker m = new MoonWalker();
     frame.add(m);
-    frame.setSize(900, 900);
+    frame.setResizable(false);
+    frame.setSize(890, 890);
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    while (true)
+    while (true) 
     {
-      m.move();
-      m.repaint();
+      m.move(); 
+      m.repaint(); 
       Thread.sleep(15);
+      endTime = (System.currentTimeMillis())-startTime;
+    } 
+  }
+  
+  public void unCollect()
+  {
+    c1.unCollect();
+    c2.unCollect();
+    c3.unCollect();
+    for(int i = 0; i < b.length; i++)
+    {
+      b[i].unPress();
     }
   }
-  public void paint(Graphics g)
+  
+  public void checkBlock()
   {
+    for(int i = 0; i < p.length; i++)
+    {
+      sam.checkBlock(p[i]);
+    }
+  }
+  
+  public void pauseTimer()
+  {
+    startTime += 15;
+  }
+  
+  public void resetTimer()
+  {
+    startTime = System.currentTimeMillis();
+  }
+  
+  public void paint(Graphics g) 
+  { 
     super.paint(g);
     Graphics2D g2d = (Graphics2D) g;
-    g2d.setColor(new Color(0, 0, 100));
-    g2d.fillRect(0, 0, 900, 865);
-    g2d.setColor(new Color(0, 255, 255));
-    sam.paint(g2d);
+    //g2d.setColor(new Color(0, 0, 100));
+    //g2d.fillRect(0, 0, 900, 865);
+    g2d.drawImage(bg, 0, 0, null);
+    g2d.setColor(new Color(0, 255, 0));
+    time = "" + (endTime/1000);
+    g2d.setFont(new Font("Aharoni", Font.BOLD, 32));
+    g2d.drawString(time, 445, 40);
     for(int i = 0; i < p.length; i++)
     {
       p[i].paint(g2d);
     }
+    c1.paint(g2d);
+    c2.paint(g2d);
+    c3.paint(g2d);
+    for(int i = 0; i < b.length; i++)
+    {
+      b[i].paint(g2d);
+    }
+    for(int i = 0; i < d.length; i++)
+    {
+      d[i].paint(g2d);
+    }
+    for(int i = 0; i < pd.length; i++)
+    {
+      pd[i].paint(g2d);
+    }
+    sam.paint(g2d);
   }
+  
   public void move()
   {
     for(int i = 0; i < p.length; i++)
     {
       sam.collision(p[i]);
+    }
+    //If pressed, count down
+    for(int i = 0; i < b.length; i++)
+    {
+      if(b[i].getPressed() && !sam.getPaused())
+      {
+        b[i].timeDown();
+      }
+    }
+    for(int i = 0; i < b.length; i++)
+    {
+      for(int j = 0; j < b.length; j++)
+      {
+        if(b[i].getColor() == b[j].getColor() && b[i].getPressed())
+        {
+          b[j].pressed(b[i].getPressed());
+        }
+      }
+      for(int j = 0; j < d.length; j++)
+      {
+        if(b[i].getColor() == d[j].getColor())
+        {
+          d[j].open(b[i].getPressed());
+        }
+      }
+      for(int j = 0; j < pd.length; j++)
+      {
+        if(b[i].getColor() == pd[j].getColor())
+        {
+          pd[j].open(b[i].getPressed());
+        }
+      }
+    }
+    sam.collision(c1);
+    sam.collision(c2);
+    sam.collision(c3);
+    for(int i = 0; i < b.length; i++)
+    {
+      sam.collision(b[i]);
+    }
+    for(int i = 0; i < d.length; i++)
+    {
+      if(!d[i].getOpen())
+      {
+        sam.collision(d[i]);
+      }
+    }
+    for(int i = 0; i < pd.length; i++)
+    {
+      if(pd[i].getOpen())
+      {
+        sam.collision(pd[i]);
+      }
     }
     sam.move();
   }
