@@ -598,6 +598,11 @@ public class SpacemanSam
     {
       pause = !pause;
     }
+    if (e.getKeyCode() == KeyEvent.VK_L)
+    {
+      m.levelUp();
+      m.rebuild();
+    }
     //Set momentum to zero when key is released
     if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT && !pause)
     {

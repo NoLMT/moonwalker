@@ -729,7 +729,7 @@ public class MoonWalker extends JPanel
             s++;
           }
         }
-        
+
         for(int i = 660; i <= 660; i += 30)
         {
           for (int l = 90; l <= 420; l += 30)
@@ -801,7 +801,7 @@ public class MoonWalker extends JPanel
             s++;
           }
         }
-        
+             
         for(int i = 330; i <= 420; i += 30)
         {
           for (int l = 450; l <= 450; l += 30)
@@ -971,6 +971,8 @@ public class MoonWalker extends JPanel
   { 
     super.paint(g);
     Graphics2D g2d = (Graphics2D) g;
+    //g2d.setColor(new Color(0, 0, 100));
+    //g2d.fillRect(0, 0, 900, 865);
     g2d.drawImage(bg, 0, 0, null);
     g2d.setColor(new Color(0, 255, 0));
     time = "" + (endTime/1000);
@@ -978,8 +980,7 @@ public class MoonWalker extends JPanel
     g2d.drawString(time, 445, 40);
     if(level > 4)
     {
-      g2d.setFont(new Font("Aharoni", Font.BOLD, 100));
-      g2d.drawString("YOU WIN! :)", 200, 445);
+      g2d.drawString("YOU WIN", 400, 445);
     }
     if(level == -1)
     {
@@ -1015,7 +1016,7 @@ public class MoonWalker extends JPanel
     g2d.drawString("Jump", 156, 55); 
     g2d.setColor(new Color(0,150,0));
     g2d.drawString("Shrink", 250, 55); 
-  }
+ }
   
   public void move()
   {
@@ -1079,4 +1080,4 @@ public class MoonWalker extends JPanel
     }
     sam.move();
   }
-}
+  }
